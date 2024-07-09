@@ -9,6 +9,6 @@ encryption:
 
 eureka:
   client:
-    enabled: true
+    enabled: false
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
