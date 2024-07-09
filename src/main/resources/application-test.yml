@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI}
+      database: ${MONGODB_DATABASE}
+
+encryption:
+  key: ${ENCRYPTION_KEY}
+
+eureka:
+  client:
+    enabled: false
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL}
