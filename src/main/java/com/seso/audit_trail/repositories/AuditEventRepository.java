@@ -34,8 +34,13 @@ public class AuditEventRepository {
             query.addCriteria(Criteria.where("service").is(search.getService()));
         }
 
-        query.addCriteria(Criteria.where("createdAt").gte(search.getStartDate()).lte(search.getEndDate()));
+        if (search.getSummary() != null && !search.getSummary().isEmpty()) {
+            query.addCriteria(Criteria.where("summary").regex(search.getSummary(), "i"));
+        }
 
+        if (search.getStartDate() != null && search.getEndDate() != null) {
+            query.addCriteria(Criteria.where("createdAt").gte(search.getStartDate()).lte(search.getEndDate()));
+        }
 
         long count = mongoTemplate.count(query, AuditEvent.class);
         List<AuditEvent> auditEvents = mongoTemplate.find(query.with(pageable), AuditEvent.class);

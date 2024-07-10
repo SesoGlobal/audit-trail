@@ -6,6 +6,7 @@ import lombok.Data;
 public class AuditEventSearchDTO {
     private String service;
     private String userId;
+    private String summary;
     private String startDate;
     private String endDate;
 }

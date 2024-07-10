@@ -9,6 +9,7 @@ public class AuditEventDTO {
     private String action;
     private String service;
     private String userId;
+    private String summary;
     private String data;
     private LocalDateTime createdAt;
 }

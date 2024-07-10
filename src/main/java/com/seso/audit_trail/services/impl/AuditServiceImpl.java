@@ -41,6 +41,7 @@ public class AuditServiceImpl implements AuditService {
         auditEvent.setService(auditEventDTO.getService());
         auditEvent.setData(encryptionUtil.encrypt(auditEventDTO.getData()));
         auditEvent.setUserId(auditEventDTO.getUserId());
+        auditEvent.setSummary(auditEventDTO.getSummary());
         auditEvent.setCreatedAt(LocalDateTime.now());
         auditEventRepository.saveAuditEvent(auditEvent);
         logger.info("Audit event logged");
@@ -52,7 +53,7 @@ public class AuditServiceImpl implements AuditService {
             LocalDateTime startDateTime = LocalDateTime.parse(auditEventSearchDTO.getStartDate());
             LocalDateTime endDateTime = LocalDateTime.parse(auditEventSearchDTO.getEndDate());
             AuditEventSearch auditEventSearch = new AuditEventSearch(
-                    auditEventSearchDTO.getService(),auditEventSearchDTO.getUserId(), startDateTime, endDateTime);
+                    auditEventSearchDTO.getService(),auditEventSearchDTO.getUserId(),auditEventSearchDTO.getSummary(), startDateTime, endDateTime);
 
             Page<AuditEvent> auditEventPage = auditEventRepository
                     .searchAuditEvents(auditEventSearch,

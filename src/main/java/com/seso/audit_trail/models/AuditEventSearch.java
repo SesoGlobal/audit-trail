@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class AuditEventSearch {
     private String service;
     private String userId;
+    private String summary;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 }

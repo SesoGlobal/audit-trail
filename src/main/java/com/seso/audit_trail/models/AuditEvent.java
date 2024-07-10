@@ -14,6 +14,7 @@ public class AuditEvent {
     private String id;
     private String action;
     private String service;
+    private String summary;
     String userId;
     private String data;
     @CreatedDate
