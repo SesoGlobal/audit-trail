@@ -39,7 +39,7 @@ public class AuditServiceImpl implements AuditService {
         AuditEvent auditEvent = new AuditEvent();
         auditEvent.setAction(auditEventDTO.getAction());
         auditEvent.setService(auditEventDTO.getService());
-        auditEvent.setData(encryptionUtil.encrypt(auditEventDTO.getData()));
+        auditEvent.setData(auditEventDTO.getData());
         auditEvent.setUserId(auditEventDTO.getUserId());
         auditEvent.setSummary(auditEventDTO.getSummary());
         auditEvent.setCreatedAt(LocalDateTime.now());
