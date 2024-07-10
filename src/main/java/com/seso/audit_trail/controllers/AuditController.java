@@ -20,6 +20,7 @@ public class AuditController {
     }
 
     @PostMapping("/audit")
+    @CrossOrigin(origins = "http://localhost:3000")
     public void logAuditEvent(@RequestBody AuditEventDTO auditEventDTO) {
         System.out.println("Received audit event");
         auditService.log(auditEventDTO);
