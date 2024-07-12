@@ -17,44 +17,23 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-               // .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())  // Disable CSRF. Enable if needed
                 .authorizeHttpRequests(authz -> authz  // Public endpoints
                         .anyRequest().permitAll()
                 )
-                .httpBasic(basic -> {});  // You can replace this with your preferred authentication method
+                .httpBasic(basic -> {});
 
         return http.build();
 
-//        return http.build();
-//        http
-//                .cors().and()
-//                .csrf(csrf -> csrf.disable())
-//                .authorizeHttpRequests(auth -> auth
-//                        .anyRequest().permitAll()
-//                );
 
     }
 
-    @Autowired
-    private RequestLoggerInterceptor requestLoggingInterceptor;
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(requestLoggingInterceptor);
-    }
-
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://yourdomain.com"));  // Specify your allowed origins
-//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-//        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-//        configuration.setAllowCredentials(true);
-//        configuration.setMaxAge(3600L);
+//    @Autowired
+//    private RequestLoggerInterceptor requestLoggingInterceptor;
 //
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(requestLoggingInterceptor);
 //    }
+
 }
