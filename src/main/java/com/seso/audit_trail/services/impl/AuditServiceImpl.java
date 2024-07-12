@@ -78,6 +78,7 @@ public class AuditServiceImpl implements AuditService {
                     auditEventDTO.setService(auditEvent.getService());
                     auditEventDTO.setData(encryptionUtil.decrypt(auditEvent.getData()));
                     auditEventDTO.setUserId(auditEvent.getUserId());
+                    auditEventDTO.setSummary(auditEvent.getSummary());
                     auditEventDTO.setCreatedAt(auditEvent.getCreatedAt());
                     return auditEventDTO;
                 }).collect(Collectors.toList());
