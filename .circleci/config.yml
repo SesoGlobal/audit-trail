@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  deploy-job:
+    docker:
+      - image: cimg/openjdk:11.0
+    working_directory: ~/repo
+    environment:
+      # Customize the JVM maximum heap limit
+      MAVEN_OPTS: -Xmx600m
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: mvn clean package
+      - run: scp -oStrictHostKeyChecking=no -r /home/circleci/repo/target/audit-trail-0.0.1-SNAPSHOT.jar ec2-user@18.220.227.18:/home/ec2-user/jars/
+      - run: ssh -oStrictHostKeyChecking=no ec2-user@18.220.227.18  'sudo service seso_audit_service restart'
+
+
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy-job:
+          filters:
+            branches:
+              only: staging
+
