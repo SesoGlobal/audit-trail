@@ -1,12 +1,6 @@
 server:
   port: 8744
 
-spring:
-  data:
-    mongodb:
-      uri: mongodb+srv://seso-audit:z2gBqBmTtNFMGFSV@cluster0.edc4oia.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-      database: audit
-
 encryption:
   key: SesoAuditKEY@####
 

@@ -53,6 +53,7 @@ public class AuditServiceImpl implements AuditService {
             LocalDateTime startDateTime = LocalDateTime.parse(auditEventSearchDTO.getStartDate());
             LocalDateTime endDateTime = LocalDateTime.parse(auditEventSearchDTO.getEndDate());
             AuditEventSearch auditEventSearch = new AuditEventSearch(
+                    auditEventSearchDTO.getAction(),
                     auditEventSearchDTO.getService(),auditEventSearchDTO.getUserId(),auditEventSearchDTO.getSummary(), startDateTime, endDateTime);
 
             Page<AuditEvent> auditEventPage = auditEventRepository

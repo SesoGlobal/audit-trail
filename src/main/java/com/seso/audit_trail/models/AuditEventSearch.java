@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Data
 public class AuditEventSearch {
+    private String action;
     private String service;
     private String userId;
     private String summary;

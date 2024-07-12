@@ -30,6 +30,9 @@ public class AuditEventRepository {
         if (search.getService() != null && !search.getService().isEmpty()) {
             query.addCriteria(Criteria.where("service").is(search.getService()));
         }
+        if (search.getAction() != null && !search.getAction().isEmpty()) {
+            query.addCriteria(Criteria.where("action").is(search.getAction()));
+        }
 
         if (search.getSummary() != null && !search.getSummary().isEmpty()) {
             query.addCriteria(Criteria.where("summary").regex(search.getSummary(), "i"));
