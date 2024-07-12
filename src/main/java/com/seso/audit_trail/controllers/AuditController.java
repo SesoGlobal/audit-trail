@@ -26,7 +26,7 @@ public class AuditController {
         auditService.log(auditEventDTO);
     }
 
-    @GetMapping("/audit/search")
+    @GetMapping("/search")
     public ResponseEntity<ResponseData> getAuditEventsByService(AuditEventSearchDTO auditEventSearchDTO, Pageable pageable) {
         ResponseData responseData = auditService.search(auditEventSearchDTO, pageable);
         return new ResponseEntity<ResponseData>(responseData, responseData.getHttpStatus());
