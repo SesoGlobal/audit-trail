@@ -81,7 +81,7 @@ public class AuditServiceImpl implements AuditService {
                     auditEventDTO.setUserId(auditEvent.getUserId());
                     auditEventDTO.setSummary(auditEvent.getSummary());
                     auditEventDTO.setCreatedAt(auditEvent.getCreatedAt());
-                    if(auditEvent.getData().isEmpty()){
+                    if(auditEvent.getData() == null || auditEvent.getData().isEmpty()){
                         auditEventDTO.setData("No data");
                     }else{
                         auditEventDTO.setData(encryptionUtil.decrypt(auditEvent.getData()));
