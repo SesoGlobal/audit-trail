@@ -77,10 +77,15 @@ public class AuditServiceImpl implements AuditService {
                     AuditEventDTO auditEventDTO = new AuditEventDTO();
                     auditEventDTO.setAction(auditEvent.getAction());
                     auditEventDTO.setService(auditEvent.getService());
-                    auditEventDTO.setData(encryptionUtil.decrypt(auditEvent.getData()));
+                   // auditEventDTO.setData( encryptionUtil.decrypt(auditEvent.getData()));
                     auditEventDTO.setUserId(auditEvent.getUserId());
                     auditEventDTO.setSummary(auditEvent.getSummary());
                     auditEventDTO.setCreatedAt(auditEvent.getCreatedAt());
+                    if(auditEvent.getData().isEmpty()){
+                        auditEventDTO.setData("No data");
+                    }else{
+                        auditEventDTO.setData(encryptionUtil.decrypt(auditEvent.getData()));
+                    }
                     return auditEventDTO;
                 }).collect(Collectors.toList());
         Long totalElements = auditEventPage.getTotalElements();
